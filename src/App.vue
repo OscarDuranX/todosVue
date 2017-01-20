@@ -16,27 +16,19 @@
       </md-toolbar>
 
       <md-list>
-        <md-list-item>
-          <md-icon>move_to_inbox</md-icon> <span>Inbox</span>
+        <md-list-item @click="toggleLeftSidenav">
+          <md-icon >move_to_inbox</md-icon>
+          <router-link to="/todos">Todos</router-link>
+        </md-list-item>
+
+        <md-list-item @click="toggleLeftSidenav">
+          <md-icon>send</md-icon>
+          <router-link to="/tokens">Tokens</router-link>
         </md-list-item>
 
         <md-list-item>
-          <md-icon>send</md-icon> <span>Sent Mail</span>
-        </md-list-item>
-
-        <md-list-item>
-          <md-icon>delete</md-icon> <span>Trash</span>
-        </md-list-item>
-
-        <md-list-item>
-          <md-icon>error</md-icon> <span>Spam</span>
-
-          <md-divider class="md-inset"></md-divider>
-        </md-list-item>
-
-        <md-list-item>
-          <md-avatar>
-            <img src="https://placeimg.com/40/40/people/5" alt="People">
+          <md-avatar class="md-avatar-icon md-large">
+            <md-icon>home</md-icon>
           </md-avatar>
 
           <span>Abbey Christansen</span>
@@ -48,6 +40,8 @@
 
       </md-list>
     </md-sidenav>
+
+    <router-view></router-view>
 
   </div>
 </template>
