@@ -13,16 +13,27 @@ window.axios = Axios
 window.querystring = querystring
 Vue.prototype.$http = Axios
 
-import Todos from 'components/Todos.vue'
-import Tokens from 'components/Tokens.vue'
-
-const routes = [
-  { path: '/todos', component: Todos },
-  { path: '/tokens', component: Tokens }
-]
+import routes from './routes.js'
 
 const router = new VueRouter({
+  mode: 'history',
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  console.log('prova')
+  console.log(to)
+  console.log(from)
+  if (to.auth) {
+    var logged = false
+    if (logged) {
+      next()
+    } else {
+      next('/login')
+    }
+  } else {
+    next()
+  }
 })
 
 Vue.use(VueMaterial)
