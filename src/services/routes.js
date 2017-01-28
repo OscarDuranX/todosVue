@@ -1,10 +1,14 @@
-import Todos from 'components/Todos.vue'
-import Tokens from 'components/Tokens.vue'
-import Profile from 'components/Profile.vue'
-import NotFound from 'components/NotFound.vue'
-import Login from 'components/Login.vue'
+import Todos from '../components/Todos.vue'
+import Tokens from '../components/Tokens.vue'
+import Profile from '../components/Profile.vue'
+import NotFound from '../components/NotFound.vue'
+import Login from '../components/Login.vue'
 
 const routes = [
+  { path: '/',
+    component: Todos,
+    meta: { auth: true }
+  },
   { path: '/todos',
     component: Todos,
     auth: true
