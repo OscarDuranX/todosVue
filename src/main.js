@@ -8,33 +8,23 @@ import 'vue-material/dist/vue-material.css'
 import VueRouter from 'vue-router'
 import Axios from 'axios'
 import querystring from 'querystring'
+import auth from './services/auth'
 
 window.axios = Axios
 window.querystring = querystring
 Vue.prototype.$http = Axios
 
-import routes from './services/routes.js'
+window.axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest'
+}
 
-const router = new VueRouter({
-  mode: 'history',
-  routes
-})
-
-router.beforeEach((to, from, next) => {
-  console.log('prova')
-  console.log(to)
-  console.log(from)
-  if (to.auth) {
-    var logged = false
-    if (logged) {
-      next()
-    } else {
-      next('/login')
-    }
-  } else {
-    next()
+if (auth.loggedIn()) {
+  window.axios.defaults.headers.common = {
+    'Authorization': auth.getAuthHeader()
   }
-})
+}
+
+import router from './services/router'
 
 Vue.use(VueMaterial)
 Vue.use(VueRouter)
