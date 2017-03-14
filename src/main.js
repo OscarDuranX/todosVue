@@ -5,10 +5,15 @@ import App from './App'
 
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
+import 'vue-material/dist/vue-material.css'
+import 'roboto-fontface/css/roboto/roboto-fontface.css'
+// import 'material-design-icons/iconfont/material-icons.css'
+
 import VueRouter from 'vue-router'
 import Axios from 'axios'
 import querystring from 'querystring'
 import auth from './services/auth'
+import Gravatar from 'gravatar'
 
 window.axios = Axios
 window.querystring = querystring

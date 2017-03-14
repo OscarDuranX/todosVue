@@ -43,6 +43,18 @@
           </md-button>
         </md-list-item>
 
+        <md-list-item>
+          <md-avatar class="md-avatar-icon md-large">
+            <md-icon>Gravatar</md-icon>
+          </md-avatar>
+
+          <span>Gravatar</span>
+
+          <md-button class="md-icon-button md-list-action">
+            <md-icon class="md-primary">Gravatar</md-icon>
+          </md-button>
+        </md-list-item>
+
       </md-list>
     </md-sidenav>
 

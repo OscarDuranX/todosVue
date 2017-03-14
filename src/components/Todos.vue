@@ -18,68 +18,45 @@
 <style>
 </style>
 <script>
-var STORAGE_KEY = 'todosvue_token'
-var AUTH_CLIENT_ID = 1
-var AUTH_REDIRECT_URI = 'http://localhost:8095/todos'
-
+import todosVue from '../todosVue'
 export default{
   data () {
     return {
-      todos: {},
-      authorized: false
+      todos: [],
+      connecting: true,
+      total: 0,
+      perPage: 0,
+      page: 0
     }
   },
   created () {
-    var token = this.extractToken(document.location.hash)
-    if (token) this.saveToken(token)
-    if (this.token == null) this.token = this.fetchToken()
-    if (this.fetchToken()) {
-      this.authorized = true
-      this.fetchData()
-    } else {
-      this.authorized = false
-    }
+    var that = this
+    setTimeout(function () {
+      that.fetchData()
+    }, 500)
   },
   methods: {
     fetchData: function () {
       return this.fetchPage(1)
     },
     fetchPage: function (page) {
-      var token = this.token
-      if (token != null) {
-        this.$http.defaults.headers.common['Authorization'] = 'Bearer ' + token
-        console.log('HEY TOKEN: ' + token)
-      }
-      this.$http.get('http://todos.dev:8000/api/v1/token?page=' + page).then((response) => {
-        console.log(response)
+      this.$http.get(todosVue.API_TASK_URL + '?page=' + page).then((response) => {
+        this.connecting = false
         this.todos = response.data.data
+        this.total = response.data.total
+        this.perPage = response.data.per_page
+        this.page = response.data.current_page
       }, (response) => {
-        console.log(response)
-        // TODO only if HTTP response code is 401
-        // TODO monstrar amb una bona UI/UE error -> Sweet alert
+        this.connecting = false
+        this.showConnectionError()
         this.authorized = false
       })
     },
-    logout: function () {
-      window.localStorage.removeItem(STORAGE_KEY)
-      this.authorized = false
+    showConnectionError () {
+      this.$refs.connectionError.open()
     },
-    extractToken: function (hash) {
-      var match = hash.match(/access_token(\w+)/)
-      return !!match && match[1]
-    },
-    connect: function () {
-      query = {
-        client_id: AUTH_CLIENT_ID,
-        redirect_url: AUTH_REDIRECT_URI,
-        response_type: 'token',
-        scope: ''
-      }
-      var query = window.querystring.stringify(query)
-      window.location.replace('http://todos.dev:8000/oauth/authorized' + query)
-    },
-    fetchToken: function () {
-      return window.localStorage.getItem(STORAGE_KEY)
+    onPagination: function () {
+      console.log('pagination todo!')
     }
   }
 }

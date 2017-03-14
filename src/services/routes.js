@@ -1,8 +1,9 @@
-import Todos from '../components/Todos.vue'
-import Tokens from '../components/Tokens.vue'
-import Profile from '../components/Profile.vue'
-import NotFound from '../components/NotFound.vue'
-import Login from '../components/Login.vue'
+import Todos from '../components/Todos'
+import Tokens from '../components/Tokens'
+import Profile from '../components/Profile'
+import NotFound from '../components/NotFound'
+import Login from '../components/Login'
+
 
 const routes = [
   { path: '/',
