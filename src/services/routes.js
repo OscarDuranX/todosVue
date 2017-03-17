@@ -3,32 +3,32 @@ import Tokens from '../components/Tokens'
 import Profile from '../components/Profile'
 import NotFound from '../components/NotFound'
 import Login from '../components/Login'
-
+import Cordova from '../components/Cordova'
 
 const routes = [
-  { path: '/',
-    component: Todos,
-    meta: { auth: true }
-  },
   { path: '/todos',
     component: Todos,
-    auth: true
+    meta: { auth: false }
   },
   { path: '/tokens',
     component: Tokens,
-    auth: false
+    meta: { auth: true }
   },
   { path: '/profile',
     component: Profile,
-    auth: true
+    meta: { auth: true }
   },
   { path: '/login',
     component: Login,
-    auth: false
+    meta: { auth: false }
   },
-  { path: '/*',
+  { path: '/cordova',
+    component: Cordova,
+    meta: { auth: false }
+  },
+  { path: '*',
     component: NotFound,
-    auth: false
+    meta: { auth: false }
   }
 ]
 

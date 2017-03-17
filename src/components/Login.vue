@@ -36,8 +36,8 @@ export default{
     },
     login: function () {
       query = {
-        client_id: todosVue.AUTH_CLIENT_ID,
-        redirect_uri: todosVue.AUTH_REDIRECT_URI,
+        client_id: todosVue.OAUTH_CLIENT_ID,
+        redirect_uri: todosVue.OAUTH_REDIRECT_URI,
         response_type: 'token',
         scope: ''
       }

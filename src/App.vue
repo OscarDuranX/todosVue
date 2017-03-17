@@ -30,6 +30,10 @@
           <md-icon>profile</md-icon>
           <router-link to="/profile">Profile</router-link>
         </md-list-item>
+        <md-list-item @click="toggleLeftSidenav">
+          <md-icon>Cordova</md-icon>
+          <router-link to="/cordova">Cordova</router-link>
+        </md-list-item>
 
         <md-list-item>
           <md-avatar class="md-avatar-icon md-large">

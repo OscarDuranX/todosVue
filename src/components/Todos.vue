@@ -1,17 +1,52 @@
 <template>
-    <div>
+    <div id="todos">
+        <md-table-card>
+            <md-toolbar>
+                <h1 class="md-title">Todos</h1>
+                <md-button class="md-icon-button">
+                    <md-icon>filter_list</md-icon>
+                </md-button>
 
-        <div v-show="!authorized" >
-            <md-button class="md-raised md-primary" @click="connect">Connect</md-button>
-        </div>
-        <div v-show="authorized" >
-            <md-button class="md-raised md-primary" @click="logout">Logout</md-button>
-        </div>
-        <ul v-show="authorized">
-            <li v-for="(todo, index) in todos">
-                {{  todo.name  }}
-            </li>
-        </ul>
+                <md-button class="md-icon-button">
+                    <md-icon>search</md-icon>
+                </md-button>
+            </md-toolbar>
+
+            <md-table md-sort="name" md-sort-type="desc">
+                <md-table-header>
+                    <md-table-row>
+                        <md-table-head md-sort-by="name" md-tooltip="Task name">Name</md-table-head>
+                        <md-table-head md-sort-by="priority" md-numeric md-tooltip="The priority for task">Priority</md-table-head>
+                        <md-table-head md-sort-by="done" md-numeric md-tooltip="Task is done?">Done</md-table-head>
+                    </md-table-row>
+                </md-table-header>
+
+                <md-spinner :md-size="150" md-indeterminate  class="md-accent" v-show="connecting" ></md-spinner>
+
+                <md-table-body>
+                    <md-table-row v-for="(todo, index) in todos" md-auto-select md-selection>
+                        <md-table-cell>{{ index +1 }} {{ todo.name }}</md-table-cell>
+                        <md-table-cell>{{ todo.priority }}</md-table-cell>
+                        <md-table-cell><md-switch v-model="todo.done" id="done" name="done"></md-switch></md-table-cell>
+                    </md-table-row>
+                </md-table-body>
+
+            </md-table>
+
+            <md-table-pagination
+                    :md-size=perPage
+                    :md-total=total
+                    :md-page=page
+                    md-label="Rows"
+                    md-separator="of"
+                    :md-page-options="[5, 15, 25, 50]"
+                    @pagination="onPagination"></md-table-pagination>
+
+        </md-table-card>
+
+        <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
+            <span>Connection error. Please reconnect using connect button!.</span>
+        </md-snackbar>
 
     </div>
 </template>

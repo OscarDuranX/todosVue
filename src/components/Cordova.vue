@@ -1,0 +1,23 @@
+<template>
+    <div>
+        CRODVOA TEMPLATE
+    </div>
+
+</template>
+<style>
+</style>
+<script>
+export default{
+  created () {
+    document.addEventListener('devicready', this.onDeviceReady, false)
+  },
+  beforeDestroy () {
+    document.addEventListener('devicready', this.onDeviceReady, false)
+  },
+  methods: {
+    onDeviceReady () {
+      console.log('device Ready!')
+    }
+  }
+}
+</script>
