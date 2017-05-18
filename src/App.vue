@@ -18,21 +18,25 @@
       <md-list>
         <md-list-item @click="toggleLeftSidenav">
           <md-icon >move_to_inbox</md-icon>
-          <router-link to="/todos">Todos</router-link>
+          <router-link to="/todos"><span>Todos</span></router-link>
         </md-list-item>
 
         <md-list-item @click="toggleLeftSidenav">
           <md-icon>send</md-icon>
-          <router-link to="/tokens">Tokens</router-link>
+          <router-link to="/tokens"><span>Tokens</span></router-link>
         </md-list-item>
 
         <md-list-item @click="toggleLeftSidenav">
           <md-icon>profile</md-icon>
-          <router-link to="/profile">Profile</router-link>
+          <router-link to="/profile"><span>Profile</span></router-link>
         </md-list-item>
         <md-list-item @click="toggleLeftSidenav">
           <md-icon>Cordova</md-icon>
-          <router-link to="/cordova">Cordova</router-link>
+          <router-link to="/cordova"><span>Cordova</span></router-link>
+        </md-list-item>
+        <md-list-item @click="toggleLeftSidenav">
+          <md-icon>android</md-icon>
+          <router-link to="/deviceinfo"><span>Device</span></router-link>
         </md-list-item>
 
         <md-list-item>
