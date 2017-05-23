@@ -27,7 +27,7 @@
         </md-list-item>
 
         <md-list-item @click="toggleLeftSidenav">
-          <md-icon>profile</md-icon>
+          <md-icon>account_circle</md-icon>
           <router-link to="/profile"><span>Profile</span></router-link>
         </md-list-item>
         <md-list-item @click="toggleLeftSidenav">

@@ -1,6 +1,6 @@
 <template>
     <div>
-        CRODVOA TEMPLATE
+        Cordova TEMPLATE
     </div>
 
 </template>
